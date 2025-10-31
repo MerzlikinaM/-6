@@ -1,0 +1,74 @@
+#Сортировка обменом (пузырьком) (Bubble Sort) на Python
+# Функция для сортировки массива методом пузырька
+def bubble_sort(arr):
+    n = len(arr)
+    # Проходим по всем элементам массива
+    for i in range(n - 1):
+        # Последний элемент на каждой итерации уже на своем месте
+        for j in range(n - i - 1):
+            # Сравниваем соседние элементы
+            if arr[j] > arr[j + 1]:
+                # Меняем местами, если они стоят в неправильном порядке
+                arr[j], arr[j + 1] = arr[j + 1], arr[j]
+
+# Функция для вывода массива
+def print_array(arr):
+    for i in range(len(arr)):
+        print(arr[i], end=" ")
+    print()
+
+# Пример использования
+if __name__ == "__main__":
+    arr = [64, 34, 25, 12, 22, 11, 90]
+    n = len(arr)
+    print("Исходный массив: ")
+    print_array(arr)
+
+    bubble_sort(arr)
+
+    print("Отсортированный массив: ")
+    print_array(arr)
+
+
+//Сортировка обменом (пузырьком) (Bubble Sort) на Java
+public class BubbleSort {
+
+    // Функция для сортировки массива методом пузырька
+    public static void bubbleSort(int arr[]) {
+        int n = arr.length;
+        // Проходим по всем элементам массива
+        for (int i = 0; i < n - 1; i++) {
+            // Последний элемент на каждой итерации уже на своем месте
+            for (int j = 0; j < n - i - 1; j++) {
+                // Сравниваем соседние элементы
+                if (arr[j] > arr[j + 1]) {
+                    // Меняем местами, если они стоят в неправильном порядке
+                    int temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                }
+            }
+        }
+    }
+
+    // Функция для вывода массива
+    public static void printArray(int arr[]) {
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i] + " ");
+        }
+        System.out.println();
+    }
+
+    public static void main(String[] args) {
+        int arr[] = {64, 34, 25, 12, 22, 11, 90};
+        int n = arr.length;
+        
+        System.out.println("Исходный массив: ");
+        printArray(arr);
+
+        bubbleSort(arr);
+
+        System.out.println("Отсортированный массив: ");
+        printArray(arr);
+    }
+}
