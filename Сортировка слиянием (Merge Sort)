@@ -1,0 +1,148 @@
+//Сортировка слиянием (Merge Sort) на c++
+#include <iostream>
+#include <vector>
+using namespace std;
+
+// Базовый случай: массив длиной 0 или 1 уже отсортирован
+vector<int> merge_sort(vector<int> arr) {
+    // Базовый случай: массив длиной 0 или 1 уже отсортирован
+    if (arr.size() <= 1) {
+        return arr;
+    }
+
+    // Находим середину массива
+    int mid = arr.size() / 2;
+
+    // Делим массив на две части
+    vector<int> left(arr.begin(), arr.begin() + mid);
+    vector<int> right(arr.begin() + mid, arr.end());
+
+    // Рекурсивно сортируем каждую часть
+    left = merge_sort(left);
+    right = merge_sort(right);
+
+    // Сливаем отсортированные части
+    return merge(left, right);
+}
+
+vector<int> merge(vector<int> left, vector<int> right) {
+    vector<int> result;
+    int i = 0, j = 0;
+
+    // Пока есть элементы в обоих массивах
+    while (i < left.size() && j < right.size()) {
+        if (left[i] < right[j]) {
+            result.push_back(left[i]);
+            i++;
+        } else {
+            result.push_back(right[j]);
+            j++;
+        }
+    }
+
+    // Добавляем оставшиеся элементы
+    while (i < left.size()) {
+        result.push_back(left[i]);
+        i++;
+    }
+
+    while (j < right.size()) {
+        result.push_back(right[j]);
+        j++;
+    }
+
+    return result;
+}
+
+// Пример использования
+int main() {
+    vector<int> array = {38, 27, 43, 3, 9, 82, 10};
+    cout << "Исходный массив: ";
+    for (int num : array) {
+        cout << num << " ";
+    }
+    cout << endl;
+
+    vector<int> sorted_array = merge_sort(array);
+
+    cout << "Отсортированный массив: ";
+    for (int num : sorted_array) {
+        cout << num << " ";
+    }
+    cout << endl;
+
+    return 0;
+}
+
+
+//Сортировка слиянием (Merge Sort) на Java
+import java.util.Arrays;
+
+public class MergeSort {
+
+    // Базовый случай: массив длиной 0 или 1 уже отсортирован
+    public static int[] mergeSort(int[] arr) {
+        // Базовый случай: массив длиной 0 или 1 уже отсортирован
+        if (arr.length <= 1) {
+            return arr;
+        }
+
+        // Находим середину массива
+        int mid = arr.length / 2;
+
+        // Делим массив на две части
+        int[] left = Arrays.copyOfRange(arr, 0, mid);
+        int[] right = Arrays.copyOfRange(arr, mid, arr.length);
+
+        // Рекурсивно сортируем каждую часть
+        left = mergeSort(left);
+        right = mergeSort(right);
+
+        // Сливаем отсортированные части
+        return merge(left, right);
+    }
+
+    public static int[] merge(int[] left, int[] right) {
+        int[] result = new int[left.length + right.length];
+        int i = 0, j = 0, k = 0;
+
+        // Пока есть элементы в обоих массивах
+        while (i < left.length && j < right.length) {
+            if (left[i] < right[j]) {
+                result[k] = left[i];
+                i++;
+            } else {
+                result[k] = right[j];
+                j++;
+            }
+            k++;
+        }
+
+        // Добавляем оставшиеся элементы
+        while (i < left.length) {
+            result[k] = left[i];
+            i++;
+            k++;
+        }
+
+        while (j < right.length) {
+            result[k] = right[j];
+            j++;
+            k++;
+        }
+
+        return result;
+    }
+
+    // Пример использования
+    public static void main(String[] args) {
+        int[] array = {38, 27, 43, 3, 9, 82, 10};
+        System.out.print("Исходный массив: ");
+        System.out.println(Arrays.toString(array));
+
+        int[] sortedArray = mergeSort(array);
+
+        System.out.print("Отсортированный массив: ");
+        System.out.println(Arrays.toString(sortedArray));
+    }
+}
