@@ -1,0 +1,86 @@
+//Сортировка выбором (Selection Sort) на c++
+#include <iostream>
+#include <vector>
+
+void selection_sort(std::vector<int>& arr) {
+    // Проходим по всем элементам массива
+    for (int i = 0; i < arr.size(); i++) {
+        // Предполагаем, что первый элемент - минимальный
+        int min_index = i;
+        // Ищем минимальный элемент в оставшейся части массива
+        for (int j = i + 1; j < arr.size(); j++) {
+            if (arr[j] < arr[min_index]) {
+                min_index = j;
+            }
+        }
+        // Меняем найденный минимальный элемент с первым элементом в неотсортированной части
+        std::swap(arr[i], arr[min_index]);
+    }
+}
+
+// Пример использования
+int main() {
+    // Создаем тестовый массив
+    std::vector<int> test_array = {64, 25, 12, 22, 11};
+    std::cout << "Исходный массив: ";
+    for (int num : test_array) {
+        std::cout << num << " ";
+    }
+    std::cout << std::endl;
+
+    // Сортируем массив
+    selection_sort(test_array);
+
+    std::cout << "Отсортированный массив: ";
+    for (int num : test_array) {
+        std::cout << num << " ";
+    }
+    std::cout << std::endl;
+
+    return 0;
+}
+
+//Сортировка выбором (Selection Sort) на Java
+public class SelectionSort {
+
+    public static void selectionSort(int[] arr) {
+        // Проходим по всем элементам массива
+        for (int i = 0; i < arr.length; i++) {
+            // Предполагаем, что первый элемент - минимальный
+            int minIndex = i;
+
+            // Ищем минимальный элемент в оставшейся части массива
+            for (int j = i + 1; j < arr.length; j++) {
+                if (arr[j] < arr[minIndex]) {
+                    minIndex = j;
+                }
+            }
+
+            // Меняем найденный минимальный элемент с первым элементом в неотсортированной части
+            int temp = arr[i];
+            arr[i] = arr[minIndex];
+            arr[minIndex] = temp;
+        }
+    }
+
+    // Пример использования
+    public static void main(String[] args) {
+        // Создаем тестовый массив
+        int[] testArray = {64, 25, 12, 22, 11};
+        System.out.print("Исходный массив: ");
+        printArray(testArray);
+
+        // Сортируем массив
+        selectionSort(testArray);
+
+        System.out.print("Отсортированный массив: ");
+        printArray(testArray);
+    }
+
+    public static void printArray(int[] arr) {
+        for (int value : arr) {
+            System.out.print(value + " ");
+        }
+        System.out.println();
+    }
+}
